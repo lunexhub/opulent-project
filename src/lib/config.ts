@@ -5,9 +5,20 @@
 
 // Contact Information
 export const contactConfig = {
+  phones: [
+    {
+      display: import.meta.env.VITE_PHONE_1_DISPLAY || "078 702 8285",
+      raw: import.meta.env.VITE_PHONE_1_RAW || "0787028285",
+    },
+    {
+      display: import.meta.env.VITE_PHONE_2_DISPLAY || "068 514 5786",
+      raw: import.meta.env.VITE_PHONE_2_RAW || "0685145786",
+    },
+  ],
+  // Keep single phone for backward compatibility (uses first phone)
   phone: {
-    display: import.meta.env.VITE_PHONE_DISPLAY || "078 702 8285",
-    raw: import.meta.env.VITE_PHONE_RAW || "0787028285",
+    display: import.meta.env.VITE_PHONE_DISPLAY || import.meta.env.VITE_PHONE_1_DISPLAY || "078 702 8285",
+    raw: import.meta.env.VITE_PHONE_RAW || import.meta.env.VITE_PHONE_1_RAW || "0787028285",
   },
   whatsapp: {
     display: import.meta.env.VITE_WHATSAPP_DISPLAY || "078 702 8285",

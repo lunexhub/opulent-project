@@ -3,12 +3,12 @@ import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
 import { contactConfig } from "@/lib/config";
 
 const contactInfo = [
-  {
+  ...contactConfig.phones.map((phone, index) => ({
     icon: Phone,
-    label: "Phone",
-    value: contactConfig.phone.display,
-    href: `tel:${contactConfig.phone.raw}`,
-  },
+    label: index === 0 ? "Phone" : "Phone",
+    value: phone.display,
+    href: `tel:${phone.raw}`,
+  })),
   {
     icon: MessageCircle,
     label: "WhatsApp",
@@ -118,13 +118,16 @@ const Contact = () => {
               <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
               WhatsApp Us
             </a>
-            <a
-              href={`tel:${contactConfig.phone.raw}`}
-              className="inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 bg-background text-foreground rounded-full font-medium text-sm sm:text-base md:text-lg hover:bg-background/90 transition-all duration-300 touch-manipulation min-h-[44px] w-full sm:w-auto"
-            >
-              <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
-              Call Now
-            </a>
+            {contactConfig.phones.map((phone, index) => (
+              <a
+                key={index}
+                href={`tel:${phone.raw}`}
+                className="inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 bg-background text-foreground rounded-full font-medium text-sm sm:text-base md:text-lg hover:bg-background/90 transition-all duration-300 touch-manipulation min-h-[44px] w-full sm:w-auto"
+              >
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+                Call {phone.display}
+              </a>
+            ))}
           </div>
         </motion.div>
       </div>

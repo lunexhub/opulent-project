@@ -1,6 +1,11 @@
+/* Root app container
+ * Use dynamic viewport height (100dvh) where supported for more reliable full-height behavior
+ * on mobile address-bar / toolbar resize, with 100vh as a safe fallback.
+ * This guarantees the app can still extend beyond the viewport and scroll naturally. */
 #root {
   width: 100%;
-  min-height: 100vh;
+  min-height: 100vh;   /* Fallback for older browsers */
+  min-height: 100dvh;  /* Modern dynamic viewport unit for iOS Safari & Android Chrome */
   overflow-x: hidden;
   max-width: 100vw;
 }
